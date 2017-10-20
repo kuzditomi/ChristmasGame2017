@@ -5,7 +5,6 @@ export class Game {
     private screens: { [name: string]: Screen }
 
     constructor(private settings: GameSettings, private gameDisplay: GameDisplay) {
-        // create screen hash
         this.screens = settings.screens.reduce((screens, screen) => {
             screens[screen.name] = screen;
             return screens;

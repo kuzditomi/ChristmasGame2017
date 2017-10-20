@@ -1,4 +1,5 @@
 import { Screen, Item } from "./models";
+import { ClickableBuilder } from "./clickable-builder";
 
 export class ScreenBuilder {
     private screen: Screen;
@@ -15,8 +16,13 @@ export class ScreenBuilder {
         };
     }
 
-    public AddClickable(item: Item, screen: string): ScreenBuilder {
-        this.screen.clickables.push({ item, screen });
+    public AddClickable(clickableBuilderCallback: (clickableBuilder: ClickableBuilder) => void): ScreenBuilder {
+        const builder = new ClickableBuilder();
+        
+        clickableBuilderCallback(builder);
+        const clickable = builder.Clickable;
+
+        this.screen.clickables.push(clickable);
 
         return this;
     }
