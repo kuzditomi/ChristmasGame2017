@@ -24,10 +24,13 @@ export class GameDisplay {
     public set video(video: Video) {
         const $video = this.$video;
 
-        $video.src = video.source;
-        $video.currentTime = 0;
-        $video.onended = ()=>{
-            video.onFinished && video.onFinished();
+        $video.currentTime = video.from;
+
+        $video.ontimeupdate = () => {
+            if($video.currentTime > video.to && !$video.paused){
+                $video.pause();
+                video.onFinished && video.onFinished();
+            }
         };
     }
 

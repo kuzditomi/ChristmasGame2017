@@ -1,4 +1,5 @@
 export interface Video {
-    source: string;
+    from: number;
+    to: number;
     onFinished?: () => void;
 }

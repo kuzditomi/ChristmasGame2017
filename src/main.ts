@@ -7,12 +7,12 @@ var gamebuilder = new GameBuilder();
 var settings = gamebuilder
     .AddScreen("start", sb => {
         sb
-            .SetVideo("1")
+            .SetVideo(0, 1.4)
             .AddClickable({}, "masodik")
     })
     .AddScreen("masodik", sb => {
         sb
-            .SetVideo("2")
+            .SetVideo(1.4, 3)
             .AddClickable({}, "start")
     })
     .GameSettings;

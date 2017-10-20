@@ -21,15 +21,12 @@ export class ScreenBuilder {
         return this;
     }
 
-    public SetVideo(name: string): ScreenBuilder {
+    public SetVideo(from: number, to: number): ScreenBuilder {
         this.screen.video = {
-            source: this.videoPath(name),
+            from,
+            to
         };
 
         return this;
-    }
-
-    private videoPath(name: string): string {
-        return `vid/${name}.mp4`;
     }
 }
