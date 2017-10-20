@@ -1,8 +1,9 @@
+import { GameSettings } from "./models";
+
 export class Game {
-    constructor(private message: string) {
+    constructor(private settings: GameSettings) {
     }
 
     write() {
-        console.log(this.message);
     }
 }

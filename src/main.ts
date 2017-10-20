@@ -1,4 +1,16 @@
 import { Game } from "./game";
+import { GameBuilder } from "./game-builder";
 
-const game = new Game("Hello world!");
+var gamebuilder = new GameBuilder();
+
+var settings = gamebuilder
+    .AddScreen("start", sb => {
+        sb.AddClickable({}, "masodik")
+    })
+    .AddScreen("masodik", sb => {
+        sb.AddClickable({}, "elso")
+    })
+    .GameSettings;
+
+const game = new Game(settings);
 game.write();
