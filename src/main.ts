@@ -8,9 +8,10 @@ var settings = gamebuilder
         sb.AddClickable({}, "masodik")
     })
     .AddScreen("masodik", sb => {
-        sb.AddClickable({}, "elso")
+        sb.AddClickable({}, "start")
     })
     .GameSettings;
 
 const game = new Game(settings);
-game.write();
+
+game.start();

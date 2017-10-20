@@ -4,7 +4,7 @@ import { ScreenBuilder } from "./screen-builder";
 export class GameBuilder {
     private settings: GameSettings;
 
-    public get GameSettings() { return this.GameSettings };
+    public get GameSettings() { return this.settings };
 
     constructor(settings?: GameSettings) {
         this.settings = settings || { screens: [] };
