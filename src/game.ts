@@ -1,23 +1,10 @@
 import { GameSettings, Screen, Clickable } from "./models";
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+import { GameDisplay } from "./game-display";
 
 export class Game {
     private screens: { [name: string]: Screen }
 
-    private get $screen(): Element {
-        return $('.screen');
-    }
-
-    private set $title(title: string) {
-        $('.title').innerHTML = title;
-    }
-
-    private get $clickables(): NodeListOf<Element> {
-        return $$('.clickable');
-    }
-
-    constructor(private settings: GameSettings) {
+    constructor(private settings: GameSettings, private gameDisplay: GameDisplay) {
         // create screen hash
         this.screens = settings.screens.reduce((screens, screen) => {
             screens[screen.name] = screen;
@@ -33,19 +20,14 @@ export class Game {
     private Display(screen: Screen) {
         this.Clear();
 
-        this.$title = screen.name;
-        screen.clickables.forEach(c => this.AddClickable(c));
-    }
-
-    private AddClickable(clickable: Clickable) {
-        const $clickable = document.createElement("div");
-
-        $clickable.classList.add("clickable");
-        $clickable.onclick = () => {
-            this.onClick(clickable.screen);
+        screen.video.onFinished = () => {
+            screen.clickables.forEach(c => this.gameDisplay.AddClickable(c, () => this.onClick(c.screen)));
         };
 
-        this.$screen.appendChild($clickable);
+        this.gameDisplay.title = screen.name;
+        this.gameDisplay.video = screen.video;
+
+        this.gameDisplay.StartVideo();
     }
 
     private onClick(screenName: string) {
@@ -54,10 +36,10 @@ export class Game {
     }
 
     private Clear(): void {
-        this.$title = "";
+        this.gameDisplay.title = "";
 
-        while (this.$clickables.length > 0) {
-            this.$clickables[0].remove();
+        while (this.gameDisplay.clickables.length > 0) {
+            this.gameDisplay.clickables[0].remove();
         }
     }
 }

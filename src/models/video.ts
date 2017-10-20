@@ -1,3 +1,4 @@
 export interface Video {
-    isPlaying: boolean;
+    source: string;
+    onFinished?: () => void;
 }

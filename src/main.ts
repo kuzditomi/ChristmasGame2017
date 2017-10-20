@@ -1,17 +1,23 @@
 import { Game } from "./game";
 import { GameBuilder } from "./game-builder";
+import { GameDisplay } from "./game-display";
 
 var gamebuilder = new GameBuilder();
 
 var settings = gamebuilder
     .AddScreen("start", sb => {
-        sb.AddClickable({}, "masodik")
+        sb
+            .SetVideo("1")
+            .AddClickable({}, "masodik")
     })
     .AddScreen("masodik", sb => {
-        sb.AddClickable({}, "start")
+        sb
+            .SetVideo("2")
+            .AddClickable({}, "start")
     })
     .GameSettings;
 
-const game = new Game(settings);
+const display = new GameDisplay(document);
+const game = new Game(settings, display);
 
 game.start();
