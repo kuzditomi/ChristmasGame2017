@@ -29,7 +29,7 @@ export class GameDisplay {
         $video.currentTime = video.from;
 
         $video.ontimeupdate = () => {
-            if($video.currentTime > (video.to - TIME_UPDATE_DELTA) && !$video.paused){
+            if ($video.currentTime > (video.to - TIME_UPDATE_DELTA) && !$video.paused) {
                 $video.pause();
                 video.onFinished && video.onFinished();
             }
@@ -41,18 +41,18 @@ export class GameDisplay {
     }
 
     public AddClickable(clickable: Clickable, clickCallback: () => void) {
-        const $clickable = document.createElement("div");
+        const $clickable = this.document.getElementById(clickable.svgId);
 
-        $clickable.classList.add("clickable");
-        
-        $clickable.style.left = `${clickable.item.x}px`;
-        $clickable.style.top = `${clickable.item.y}px`;
-
-        $clickable.onclick = () => {
+        const onClick = () => {
+            $clickable.style.display = 'none';
             clickCallback();
+            $clickable.onclick = null;
+            $clickable.style.zIndex = '0';
         };
 
-        this.screen.appendChild($clickable);
+        $clickable.style.display = 'block';
+        $clickable.style.zIndex = '100';
+        $clickable.onclick = onClick;
     }
 
     public StartVideo() {

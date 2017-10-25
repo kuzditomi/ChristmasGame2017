@@ -1,15 +1,27 @@
 <html>
-    <head>
-        <title>Christmas Game 2017</title>
-        <meta charset="utf-8"/>
-        <link href="style.css" rel="stylesheet"/>
-    </head>
-    <body>
-        hi!
-        <div id="screen">
-            <p id="title"></p>
-            <video id="video" preload="auto" src="video.mp4"></video>
-        </div>
-        <script src="dist/game.js"></script>
-    </body>
+
+<head>
+    <title>Christmas Game 2017</title>
+    <meta charset="utf-8" />
+    <link rel="manifest" href="manifest.json">
+    <link href="style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+</head>
+
+<body>
+    <div id="screen">
+        <p id="title"></p>
+        <video id="video" preload="auto" src="video.mp4"></video>
+        <svg id="svg">
+            <defs>
+                <filter id="myblurfilter" width="110%" height="100%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                </filter>
+            </defs>
+            <path id="doboz" filter stroke="#fff" stroke-width="15" style="display: none;" fill-opacity="0" x="205" y="270" d="M 1.375007608905321 87.12498535029607 C 1.375007608905321 87.12498535029607 153.87500533647824 0.8749866355211964 153.87500533647824 0.8749866355211964 C 153.87500533647824 0.8749866355211964 447.62500095926225 108.3749850336464 447.62500095926225 108.3749850336464 C 447.62500095926225 108.3749850336464 442.62500103376806 278.37498250044905 442.62500103376806 278.37498250044905 C 442.62500103376806 278.37498250044905 320.1250028591602 370.87498112209164 320.1250028591602 370.87498112209164 C 320.1250028591602 370.87498112209164 31.375007161870485 237.12498311512192 31.375007161870485 237.12498311512192 C 31.375007161870485 237.12498311512192 1.375007608905321 87.12498535029607 1.375007608905321 87.12498535029607 z"></path>
+        </svg>
+    </div>
+    <script src="dist/game.js"></script>
+</body>
+
 </html>

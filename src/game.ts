@@ -20,7 +20,7 @@ export class Game {
         this.Clear();
 
         screen.video.onFinished = () => {
-            screen.clickables.forEach(c => this.gameDisplay.AddClickable(c, () => this.onClick(c.screen)));
+            screen.clickables.forEach(c => this.gameDisplay.AddClickable(c, () => this.onClick(c.nextScreen)));
         };
 
         this.gameDisplay.title = screen.name;

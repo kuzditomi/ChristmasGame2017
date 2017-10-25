@@ -1,6 +1,6 @@
 import {Item} from "./item";
 
 export interface Clickable {
-    item: Item;
-    screen: string;
+    svgId: string;
+    nextScreen: string;
 }

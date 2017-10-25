@@ -1,14 +1,15 @@
 import { Screen, Item } from "./models";
-import { ClickableBuilder } from "./clickable-builder";
+import { SVGPositioner } from "./svg-positioner"
 
 export class ScreenBuilder {
     private screen: Screen;
-    
+    private document: Document;
+
     public get Screen() {
         return this.screen;
     }
 
-    constructor(name: string) {
+    constructor(name: string, private svgPositioner: SVGPositioner) {
         this.screen = {
             name,
             clickables: [],
@@ -16,13 +17,13 @@ export class ScreenBuilder {
         };
     }
 
-    public AddClickable(clickableBuilderCallback: (clickableBuilder: ClickableBuilder) => void): ScreenBuilder {
-        const builder = new ClickableBuilder();
-        
-        clickableBuilderCallback(builder);
-        const clickable = builder.Clickable;
+    public AddClickable(svgId: string, nextScreen: string): ScreenBuilder {
+        this.screen.clickables.push({
+            svgId,
+            nextScreen
+        });
 
-        this.screen.clickables.push(clickable);
+        this.svgPositioner.FixPositionOf(svgId);
 
         return this;
     }
