@@ -42,3 +42,36 @@ html, body{
         transform: translateX(-50%);
     }
 }
+
+/* EDITOR */
+#editor-container {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left: 0;
+}
+
+#editor-container p.sign {
+    margin:20px;
+    font-size: 24pt;
+    color:green;
+    border: 2px solid green;
+    background: white;
+    width: fit-content;
+}
+
+#editor-container .editor-buttons{
+    margin: 20px;
+    border: 1px solid green;
+    width: fit-content;
+    padding: 10px;
+}
+
+#editor-container .editor-buttons button{
+    border: 1px solid green;
+    background: green;
+    color: white;
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 import { Game } from "./game";
 import { GameBuilder } from "./game-builder";
 import { GameDisplay } from "./game-display";
+import { SVGEditor, EditorWindow, PathDrawer } from "./svg-editor";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     const video = document.getElementById("video") as any as HTMLVideoElement;
@@ -25,3 +26,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
         game.start();
     };
 });
+
+// Create path drawer for editor
+const svgPathForEditor = document.getElementById("editor-drawer") as any as SVGPathElement;
+const pathDrawer = new PathDrawer(svgPathForEditor);
+
+// Create editor
+declare let window: EditorWindow;
+window.editor = new SVGEditor(document, pathDrawer);
+window.editor.Start();
